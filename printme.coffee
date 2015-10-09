@@ -1,35 +1,14 @@
 (angular.module 'printMe', [])
 
-.constant 'PRINT_ME_CONSTANTS',
-  id: 'print-me-css'
-  css:
-    """
-      @media screen {
-        #print-area {
-          display: none;
-        }
-      }
 
-      @media print {
-        body * {
-          visibility: hidden;
-        }
 
-        #print-area, #print-area * {
-          visibility: visible;
-        }
-
-        #print-area {
-          position: absolute;
-          left: 0;
-          top: 0.5in;
-        }
-      }
-    """
-
-# first hides element, then opens up a print dialog!
-# <div print-me>foo</div>
-# <div print-me="later">bar</div>
+# Usages:
+#
+# Regular mode:
+# <my-directive print-me>foo</my-directive>
+#
+# Manual trigger mode (useful for async directives):
+# <my-async-directive print-me="trigger">bar</my-async-directive>
 .directive 'printMe', ($timeout, $window, PRINT_ME_CONSTANTS) ->
   restrict: 'A'
   scope: no
@@ -37,7 +16,6 @@
 
     @print = $scope.print = ->
       $timeout ->
-        console.log "printing #{ $element.html() }"
         $window.print()
         $element.remove()
     @
@@ -47,10 +25,11 @@
     elem.attr 'id', 'print-area'
 
     if attrs.printMe is 'trigger'
-      # allow a child / sibling directive to explicitly call scope.print()
+      # Do nothing;
+      # We patiently wait until a sibling / child directive calls scope.print() via the controller API
 
     else
-      # default: print on the next tick
+      # default behavior: print on the next tick
       scope.print()
 
     appendStyles = ->
@@ -66,3 +45,30 @@
       $window.document.head.appendChild styleTag
 
     appendStyles()
+
+
+.constant 'PRINT_ME_CONSTANTS',
+  id: 'print-me-css'
+  css: """
+    @media screen {
+      #print-area {
+        display: none;
+      }
+    }
+
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+
+      #print-area, #print-area * {
+        visibility: visible;
+      }
+
+      #print-area {
+        position: absolute;
+        left: 0;
+        top: 0.5in;
+      }
+    }
+  """

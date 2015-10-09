@@ -28,7 +28,7 @@
     window._debugScope = scope
 
 
-# Sample directive that loads in future tick
+# Sample async directive that finishes loading in 500ms
 .directive 'asyncComponent', ($timeout) ->
   scope: {} # isolate scope
   template: """
