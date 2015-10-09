@@ -1,40 +1,40 @@
-#### printme
+## printme
 easy printing directive for angularjs
 
-#### Demo
+## demo
 ![alt tag](https://raw.githubusercontent.com/albertywu/printme/master/demo.gif)
 
-#### Install
-Use bower:
+## install
+use bower:
 ```
 bower install printme
 ```
 
-Include in html:
+include in html:
 ```
 <script src="bower_components/printme/printme.js"></script>
 ```
 
-Include in angular module dependencies:
+include in angular module dependencies:
 ```
 var app = angular.module('myApp', ['printMe', ...]
 ```
 
-#### Usage
+## usage
 
 Apply it to any directive to make it printable (hides directive, opens print modal):
 ```
 <my-directive print-me></my-directive>
 ```
 
-#### Advanced Usage
+## advanced usage
 
-Trigger print at a later time (useful for async components that might take a while to load)
+trigger print at a later time (useful for async components that might take a while to load)
 ```
 <my-async-directive print-me="trigger"></my-async-directive>
 ```
 
-Inside `myAsyncDirective`:
+inside `myAsyncDirective`:
 ```coffeescript
 .directive 'myAsyncDirective', ->
   scope: { ... } # isolate scope
