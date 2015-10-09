@@ -68,7 +68,7 @@
       #print-area {
         position: absolute;
         left: 0;
-        top: 0.5in;
+        top: 0;
       }
     }
   """
