@@ -1,0 +1,25 @@
+{
+  "name": "printme",
+  "main": "printme.js",
+  "version": "0.0.0",
+  "authors": [
+    "Albert Wu <albertywu@gmail.com>"
+  ],
+  "description": "a simple angular directive to print directives!",
+  "keywords": [
+    "angular",
+    "module",
+    "print",
+    "printing",
+    "directives",
+    "directive"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
