@@ -9,7 +9,7 @@
 #
 # Manual trigger mode (useful for async directives):
 # <my-async-directive print-me="trigger">bar</my-async-directive>
-.directive 'printMe', ($timeout, $window, PRINT_ME_CONSTANTS) ->
+.directive 'printMe', ['$timeout', '$window', 'PRINT_ME_CONSTANTS', ($timeout, $window, PRINT_ME_CONSTANTS) ->
   restrict: 'A'
   scope: no
   controller: ($scope, $element) ->
@@ -45,7 +45,7 @@
       $window.document.head.appendChild styleTag
 
     appendStyles()
-
+]
 
 .constant 'PRINT_ME_CONSTANTS',
   id: 'print-me-css'
