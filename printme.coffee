@@ -26,11 +26,11 @@
     elem.attr 'id', 'print-area'
 
     if attrs.printMe is 'trigger'
-# Do nothing;
-# We patiently wait until a sibling / child directive calls scope.print() via the controller API
+      # Do nothing;
+      # We patiently wait until a sibling / child directive calls scope.print() via the controller API
 
     else
-# default behavior: print on the next tick
+      # default behavior: print on the next tick
       scope.print()
 
     appendStyles = ->
