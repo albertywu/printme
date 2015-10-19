@@ -5,15 +5,17 @@
       return {
         restrict: 'A',
         scope: false,
-        controller: function($scope, $element) {
-          this.print = $scope.print = function() {
-            return $timeout(function() {
-              $window.print();
-              return $element.remove();
-            });
-          };
-          return this;
-        },
+        controller: [
+          '$scope', '$element', function($scope, $element) {
+            this.print = $scope.print = function() {
+              return $timeout(function() {
+                $window.print();
+                return $element.remove();
+              });
+            };
+            return this;
+          }
+        ],
         link: function(scope, elem, attrs) {
           var appendStyles;
           elem.attr('id', 'print-area');
