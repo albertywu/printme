@@ -8,17 +8,18 @@
 # <my-directive print-me>foo</my-directive>
 #
 # Manual trigger mode (useful for async directives):
-# <my-async-directive print-me="trigger">bar</my-async-directive>
+# <my-async-directive print-me="trigger">bar</my-async-directive> 
 .directive 'printMe', ['$timeout', '$window', 'PRINT_ME_CONSTANTS', ($timeout, $window, PRINT_ME_CONSTANTS) ->
   restrict: 'A'
   scope: no
-  controller: ($scope, $element) ->
+  controller: ['$scope', '$element', ($scope, $element) ->
 
     @print = $scope.print = ->
       $timeout ->
         $window.print()
         $element.remove()
     @
+  ]
 
   link: (scope, elem, attrs) ->
 
